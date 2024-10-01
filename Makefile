@@ -17,7 +17,7 @@ $(TARGET): $(SRC)
 pack: $(TARGET)
 	cp $(DEP_FILE) build/
 	-upx --best $(TARGET)
-	zip -r $(ZIP_FILE) build/
+	cd build && zip -r ../$(ZIP_FILE) *
 clean:
 	rm -rf build $(ZIP_FILE)
 test: $(TARGET)
