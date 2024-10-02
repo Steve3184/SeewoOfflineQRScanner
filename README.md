@@ -6,16 +6,19 @@
 
 `Seewo Offline QR Scanner` 是一个基于 C++ 的应用程序，能够从计算机屏幕上捕获Seewo的激活码解锁二维码并扫描获取激活码。该程序使用 `zbar` 库进行二维码识别，使用 `libcrypto`和 `libcryptagram` 库进行解密处理。通过分析激活码解锁二维码 URL 中的参数，程序可以解密并在屏幕左上角显示激活码。
 
+<video src="demo_assets/demo.mp4" style="height: 384px" controls autoplay muted loop></video>
+
 ## 依赖项
 
 本项目使用的预构建的二进制库文件：
 
 - `zbar`
 - `OpenSSL libcrypto`
+- `libiconv`
 
 需要的工具:
 
-- `i686-w64-mingw32` 用于交叉编译 (Windows需要MinGW工具链)
+- `i686-w64-mingw32` 用于交叉编译 (或MinGW工具链)
 - `make` (用于操作Makefile)
 - `upx` & `zip` (用于打包可执行文件)
 
@@ -37,7 +40,7 @@
 ├── base/                  # CryptoJS兼容算法实现(头文件)
 │    ├── ...
 │    └── memory/
-│        └── scoped_ptr.h   # scoped ptr实现
+│        └── scoped_ptr.h  # scoped ptr实现
 ├── libiconv-2.dll         # libiconv 库 (预构建)
 └── README.md              # 说明文件
 ```
@@ -77,6 +80,10 @@ make test
 1. 运行wapper或添加到开机启动项 `run.bat`。
 2. 程序将每隔500ms捕获一次屏幕并尝试扫描激活码解锁的 QR 码。
 3. 如果识别到 QR 码，将解密并在屏幕左上角显示激活码约10s。
+
+示例激活码: (激活码为882216)
+
+<img src="demo_assets/code.png" alt="示例激活码" style="height:256px">
 
 ## 贡献
 
